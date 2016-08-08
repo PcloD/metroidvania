@@ -5,7 +5,7 @@ public class Explode : CollisionBehaviour
 {
     public GameObject explosion;
 
-    public override void ContactBehaviour(Vector3 posOfContact, Projectile projectile)
+    public override void ContactBehaviour(Vector3 posOfContact, IProjectile projectile)
     {
         projectile.Die();
     }

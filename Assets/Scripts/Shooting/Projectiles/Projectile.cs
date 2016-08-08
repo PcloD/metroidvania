@@ -1,14 +1,41 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Projectile : MonoBehaviour {
+public class Projectile : MonoBehaviour, IProjectile
+{
 
     CollisionBehaviour collBehaviour;
-    public Vector3 movementVector;
     public float projectileSpeed = 1f;
     public float damageDealt = 1f;
     private Collider2D collider;
     private CameraUtils camBounds;
+    private Vector3 movementVector;
+
+    public Vector3 MovementVector
+    {
+        get
+        {
+            return movementVector;
+        }
+
+        set
+        {
+            movementVector = value;
+        }
+    }
+
+    public float Damage
+    {
+        get
+        {
+            return damageDealt;
+        }
+
+        set
+        {
+            damageDealt = value;
+        }
+    }
 
     public CollisionBehaviour CollBehaviour
     {
@@ -43,11 +70,14 @@ public class Projectile : MonoBehaviour {
     {
         if(collBehaviour != null)
             collBehaviour.ContactBehaviour(transform.position, this);
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void Die()
     {
         Destroy(gameObject);
     }
-
 }

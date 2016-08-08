@@ -79,12 +79,15 @@
     <Compile Include="Assets\Scripts\Movement\KeyboardMovement.cs" />
     <Compile Include="Assets\Scripts\Movement\MouseMovement.cs" />
     <Compile Include="Assets\Scripts\Shooting\CollisionBehaviour\CollisionBehaviour.cs" />
-    <Compile Include="Assets\Scripts\Shooting\CollisionBehaviour\Dissapear.cs" />
     <Compile Include="Assets\Scripts\Shooting\CollisionBehaviour\Explode.cs" />
     <Compile Include="Assets\Scripts\Shooting\CollisionBehaviour\Weaken.cs" />
     <Compile Include="Assets\Scripts\Shooting\Patterns\LinePattern.cs" />
     <Compile Include="Assets\Scripts\Shooting\Patterns\Pattern.cs" />
-    <Compile Include="Assets\Scripts\Shooting\Projectile.cs" />
+    <Compile Include="Assets\Scripts\Shooting\Projectiles\IProjectile.cs" />
+    <Compile Include="Assets\Scripts\Shooting\Projectiles\LaserProj.cs" />
+    <Compile Include="Assets\Scripts\Shooting\Projectiles\Projectile.cs" />
+    <Compile Include="Assets\Scripts\Shooting\Projectiles\ProjectileCharge.cs" />
+    <Compile Include="Assets\Scripts\Shooting\Projectiles\ProjectileTracker.cs" />
     <Compile Include="Assets\Scripts\Shooting\ShotBehaviour.cs" />
     <Compile Include="Assets\Scripts\UI\HealthManager.cs" />
     <Compile Include="Assets\Scripts\Utils\BlinkSprite.cs" />

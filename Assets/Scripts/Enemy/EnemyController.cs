@@ -41,6 +41,6 @@ public class EnemyController : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         if(!other.tag.Equals("Player"))
-            currhealth -= other.GetComponent<Projectile>().damageDealt;
+            currhealth -= other.GetComponent<IProjectile>().Damage;
     }
 }
