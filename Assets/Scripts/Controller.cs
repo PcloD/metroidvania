@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class Controller : MonoBehaviour {
 
@@ -20,6 +20,9 @@ public class Controller : MonoBehaviour {
     private HealthManager healthUI;
     private float currhealth;
 
+
+    private List<GameObject> beams;
+
     // Use this for initialization
     void Start () {
         collider = GetComponent<Collider2D>();
@@ -31,6 +34,8 @@ public class Controller : MonoBehaviour {
         currhealth = character.MaxHealth;
         for (int i = 0; i < currhealth; i++)
             healthUI.AddHeart();
+
+        beams = new List<GameObject>();
     }
 
     void Update()
@@ -86,10 +91,30 @@ public class Controller : MonoBehaviour {
         transform.position = pos;
 
         //shooting
-        if (Input.GetButton("Fire1") && 1 / character.FireRate < nextFire)
+        if (Input.GetButton("Fire1"))
         {
-            nextFire = 0; // will fire x times per second, where x is ship.FireRate
-            Shoot();
+
+            if (shotBehaviour.projectile.GetComponent<IProjectile>().Type == ProjType.Projectile && 1 / character.FireRate < nextFire)
+            {
+                nextFire = 0; // will fire x times per second, where x is ship.FireRate
+                Shoot();
+            }
+
+            if (shotBehaviour.projectile.GetComponent<IProjectile>().Type == ProjType.Laser)
+            {
+                ShootLaser();
+            }
+        }
+        else
+        {
+            if (beams.Count > 0)
+            {
+                for (int i = 0; i < beams.Count; i++)
+                {
+                    Destroy(beams[i]);
+                }
+                beams = new List<GameObject>();
+            }
         }
         
     }
@@ -104,6 +129,44 @@ public class Controller : MonoBehaviour {
             shotProjectiles[i] = shotProjectile;
         }
 
+        shotBehaviour.pattern.HandlePattern(shotProjectiles);
+    }
+
+    void ShootCharged()
+    {
+        GameObject[] shotProjectiles = new GameObject[shotBehaviour.pattern.numberOfBullets];
+
+        for (int i = 0; i < shotBehaviour.pattern.numberOfBullets; i++)
+        {
+            GameObject shotProjectile = (GameObject)Instantiate(shotBehaviour.projectile, BulletExitPoint.position, Quaternion.identity);
+            shotProjectiles[i] = shotProjectile;
+        }
+
+        shotBehaviour.pattern.HandlePattern(shotProjectiles);
+    }
+
+    void ShootLaser()
+    {
+        if (beams.Count > 0)
+        {
+            for (int i = 0; i < beams.Count; i++)
+            {
+                beams[i].GetComponent<LaserProj>().ShootingPos = BulletExitPoint.position;
+            }
+            
+            return;
+        }
+            
+        GameObject[] shotProjectiles = new GameObject[shotBehaviour.pattern.numberOfBullets];
+
+        for (int i = 0; i < shotBehaviour.pattern.numberOfBullets; i++)
+        {
+            GameObject shotProjectile = (GameObject)Instantiate(shotBehaviour.projectile, BulletExitPoint.position, Quaternion.identity);
+            shotProjectiles[i] = shotProjectile;
+
+            beams.Add(shotProjectile);
+        }
+       
         shotBehaviour.pattern.HandlePattern(shotProjectiles);
     }
 

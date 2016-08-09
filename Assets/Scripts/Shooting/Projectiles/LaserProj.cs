@@ -5,17 +5,19 @@ public class LaserProj : MonoBehaviour, IProjectile
 {
 
     CollisionBehaviour collBehaviour;
+    public Vector3 ShootingPos;
     public float speed = 1f;
     public float range = 4f;
     public float damageDealt = 1f;
-
 
     private Collider2D collider;
     private CameraUtils camBounds;
     private Transform target;
     private Vector3 movementVector;
-    private LineRenderer line;
-    private Vector3 lastPosProgression;
+    public LineRenderer line;
+    private float currentLineLength;
+    private bool extended;
+
 
     public Vector3 MovementVector
     {
@@ -27,6 +29,14 @@ public class LaserProj : MonoBehaviour, IProjectile
         set
         {
             movementVector = value;
+        }
+    }
+
+    public ProjType Type
+    {
+        get
+        {
+            return ProjType.Laser;
         }
     }
 
@@ -50,29 +60,30 @@ public class LaserProj : MonoBehaviour, IProjectile
 
     void Start()
     {
+        extended = false;
         collBehaviour = GetComponent<CollisionBehaviour>();
         collider = GetComponent<Collider2D>();
         camBounds = Camera.main.GetComponent<CameraUtils>();
         line = GetComponent<LineRenderer>();
-        lastPosProgression = transform.position;
-        line.SetPosition(0, lastPosProgression);
+        currentLineLength = 0;
+        ShootingPos = transform.position;
+        line.SetPosition(0, ShootingPos);
+        line.SetPosition(1, ShootingPos);
     }
 
     void Update()
     {
-        lastPosProgression += new Vector3(lastPosProgression.x, lastPosProgression.y + speed * Time.deltaTime, lastPosProgression.z);
-        line.SetPosition(1, lastPosProgression);
+        line.SetPosition(0, ShootingPos);
 
-        Vector3 pos = transform.position;
-
-        Vector2 boundValues = camBounds.checkCamBounds(new Vector2(pos.x + collider.offset.x, pos.y + collider.offset.y),
-            new Vector2(-collider.bounds.extents.x * 2, -collider.bounds.extents.y * 10));
-
-        if (boundValues.x != 0 || boundValues.y != 0)
-        {
-            
+        if (extended)
+            line.SetPosition(1, ShootingPos + movementVector.normalized * range);
+        else {
+            currentLineLength += speed * Time.deltaTime;
+            line.SetPosition(1, ShootingPos + movementVector.normalized * currentLineLength);
         }
 
+        if (Vector3.Distance(ShootingPos, ShootingPos + movementVector.normalized * currentLineLength) >= range)
+            extended = true;
     }
 
 }

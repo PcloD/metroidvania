@@ -14,6 +14,11 @@ public interface IProjectile {
         set;
     }
 
+    ProjType Type
+    {
+        get;
+    }
+
     float Damage
     {
         get;

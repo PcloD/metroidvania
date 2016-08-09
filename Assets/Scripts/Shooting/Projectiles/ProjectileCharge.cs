@@ -34,6 +34,14 @@ public class ProjectileCharge: MonoBehaviour, IProjectile {
         }
     }
 
+    public ProjType Type
+    {
+        get
+        {
+            return ProjType.Chargable;
+        }
+    }
+
     public float Damage
     {
         get

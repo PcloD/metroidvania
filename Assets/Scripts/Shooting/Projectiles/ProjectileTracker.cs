@@ -32,6 +32,14 @@ public class ProjectileTracker : MonoBehaviour, IProjectile {
         }
     }
 
+    public ProjType Type
+    {
+        get
+        {
+            return ProjType.Projectile;
+        }
+    }
+
     public float Damage
     {
         get

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Projectile : MonoBehaviour, IProjectile
 {
@@ -40,6 +41,14 @@ public class Projectile : MonoBehaviour, IProjectile
     public CollisionBehaviour CollBehaviour
     {
         get { return collBehaviour; }
+    }
+
+    public ProjType Type
+    {
+        get
+        {
+            return ProjType.Projectile;
+        }
     }
 
     void Start()
