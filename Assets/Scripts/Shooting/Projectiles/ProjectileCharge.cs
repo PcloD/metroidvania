@@ -9,12 +9,13 @@ public class ProjectileCharge: MonoBehaviour, IProjectile {
     public float projectileSpeed = 1f;
     public float weakDamage = .2f;
     public float chargedDamage = 2f;
-    public float trackingRange = 1f;
+
+
     private Collider2D collider;
     private CameraUtils camBounds;
-    private Transform target;
     private Vector3 movementVector;
     private float currDamage;
+    private Animator animator;
 
     public CollisionBehaviour CollBehaviour
     {
@@ -60,30 +61,24 @@ public class ProjectileCharge: MonoBehaviour, IProjectile {
         collBehaviour = GetComponent<CollisionBehaviour>();
         collider = GetComponent<Collider2D>();
         camBounds = Camera.main.GetComponent<CameraUtils>();
-        target = null;
+    }
+
+    public void Initialize(bool chargedState)
+    {
+        animator = GetComponent<Animator>();
+        animator.SetBool("charged", chargedState);
+        if (chargedState)
+            currDamage = chargedDamage;
+        else
+            currDamage = weakDamage;
     }
 
     void Update()
     {
 
-
         Vector3 pos = transform.position;
 
-        if (target == null)
-        {
-            Collider2D enemyNearby = Physics2D.OverlapCircle(transform.position, trackingRange, 1 << LayerMask.NameToLayer("Enemy"));
-            if (enemyNearby != null)
-            {
-                target = enemyNearby.transform;
-            }
-        }
-
-        if (target == null)
-            pos += (movementVector.normalized * projectileSpeed * Time.deltaTime);
-        else
-        {
-            pos += ((target.position - transform.position).normalized * projectileSpeed * Time.deltaTime);
-        }
+        pos += (movementVector.normalized * projectileSpeed * Time.deltaTime);
 
         Vector2 boundValues = camBounds.checkCamBounds(new Vector2(pos.x + collider.offset.x, pos.y + collider.offset.y),
             new Vector2(-collider.bounds.extents.x * 2, -collider.bounds.extents.y * 10));
@@ -111,9 +106,4 @@ public class ProjectileCharge: MonoBehaviour, IProjectile {
         Destroy(gameObject);
     }
 
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, trackingRange);
-    }
 }

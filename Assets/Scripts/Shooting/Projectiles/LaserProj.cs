@@ -8,7 +8,8 @@ public class LaserProj : MonoBehaviour, IProjectile
     public Vector3 ShootingPos;
     public float speed = 1f;
     public float range = 4f;
-    public float damageDealt = 1f;
+    public float damage = 5f;
+    public float damageInterval = .1f;
 
     private Collider2D collider;
     private CameraUtils camBounds;
@@ -17,6 +18,7 @@ public class LaserProj : MonoBehaviour, IProjectile
     public LineRenderer line;
     private float currentLineLength;
     private bool extended;
+    private float damageTimer;
 
 
     public Vector3 MovementVector
@@ -44,12 +46,12 @@ public class LaserProj : MonoBehaviour, IProjectile
     {
         get
         {
-            return damageDealt;
+            return damage;
         }
 
         set
         {
-            damageDealt = value;
+            damage = value;
         }
     }
 
@@ -66,6 +68,7 @@ public class LaserProj : MonoBehaviour, IProjectile
         camBounds = Camera.main.GetComponent<CameraUtils>();
         line = GetComponent<LineRenderer>();
         currentLineLength = 0;
+        damageTimer = 0;
         ShootingPos = transform.position;
         line.SetPosition(0, ShootingPos);
         line.SetPosition(1, ShootingPos);
@@ -73,6 +76,7 @@ public class LaserProj : MonoBehaviour, IProjectile
 
     void Update()
     {
+        ShootingPos = transform.position;
         line.SetPosition(0, ShootingPos);
 
         if (extended)
@@ -84,6 +88,37 @@ public class LaserProj : MonoBehaviour, IProjectile
 
         if (Vector3.Distance(ShootingPos, ShootingPos + movementVector.normalized * currentLineLength) >= range)
             extended = true;
+
+        if (damageTimer != 0) {
+            damageTimer = Mathf.Max(0, damageTimer - Time.deltaTime);
+        }
+        else
+        {
+            RaycastHit2D hit;
+            if (extended)
+            {
+                if (hit = Physics2D.Raycast(ShootingPos, movementVector.normalized, range))
+                    if (hit.transform.GetComponent<EnemyController>() != null)
+                    {
+                        hit.transform.GetComponent<EnemyController>().CurrHealth -= Damage;
+                        damageTimer = damageInterval;
+                    }
+            }
+            else
+            {
+                if (hit = Physics2D.Raycast(ShootingPos, movementVector.normalized, currentLineLength))
+                    if (hit.transform.GetComponent<EnemyController>() != null)
+                    {
+                        hit.transform.GetComponent<EnemyController>().CurrHealth -= Damage;
+                        damageTimer = damageInterval;
+                    }
+            }
+        }
+
+
+
     }
+
+
 
 }

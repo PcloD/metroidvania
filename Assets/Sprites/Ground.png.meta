@@ -1,0 +1,141 @@
+fileFormatVersion: 2
+guid: a16629db7c9727d4faf6d4ee5a7b8fdb
+timeCreated: 1471297449
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Ground_0
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Ground_0
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 16
+        width: 811
+        height: 248
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -146.5, y: -124}
+        - {x: -144.5, y: -121}
+        - {x: 160.5, y: -121}
+        - {x: 162.5, y: -123}
+        - {x: 164.5, y: -123}
+        - {x: 166.5, y: -121}
+        - {x: 398.5, y: -121}
+        - {x: 401.5, y: -120}
+        - {x: 405.5, y: -115}
+        - {x: 405.5, y: 106}
+        - {x: 400.5, y: 110}
+        - {x: 397.5, y: 111}
+        - {x: 335.5, y: 111}
+        - {x: 335.5, y: 113}
+        - {x: 332.5, y: 119}
+        - {x: 328.5, y: 124}
+        - {x: 318.5, y: 124}
+        - {x: 310.5, y: 123}
+        - {x: 302.5, y: 117}
+        - {x: 298.5, y: 115}
+        - {x: 295.5, y: 113}
+        - {x: 294.5, y: 111}
+        - {x: -195.5, y: 111}
+        - {x: -196.5, y: 113}
+        - {x: -201.5, y: 119}
+        - {x: -204.5, y: 120}
+        - {x: -209.5, y: 120}
+        - {x: -211.5, y: 118}
+        - {x: -212.5, y: 114}
+        - {x: -212.5, y: 111}
+        - {x: -216.5, y: 113}
+        - {x: -218.5, y: 118}
+        - {x: -224.5, y: 118}
+        - {x: -233.5, y: 114}
+        - {x: -233.5, y: 111}
+        - {x: -240.5, y: 111}
+        - {x: -241.5, y: 113}
+        - {x: -246.5, y: 118}
+        - {x: -249.5, y: 118}
+        - {x: -254.5, y: 116}
+        - {x: -254.5, y: 111}
+        - {x: -397.5, y: 111}
+        - {x: -402.5, y: 109}
+        - {x: -405.5, y: 106}
+        - {x: -405.5, y: -115}
+        - {x: -400.5, y: -120}
+        - {x: -397.5, y: -121}
+        - {x: -358.5, y: -121}
+        - {x: -357.5, y: -122}
+        - {x: -355.5, y: -122}
+        - {x: -354.5, y: -121}
+        - {x: -348.5, y: -122}
+        - {x: -343.5, y: -124}
+        - {x: -340.5, y: -124}
+        - {x: -338.5, y: -121}
+        - {x: -289.5, y: -121}
+        - {x: -287.5, y: -123}
+        - {x: -285.5, y: -123}
+        - {x: -281.5, y: -122}
+        - {x: -280.5, y: -121}
+        - {x: -270.5, y: -120}
+        - {x: -269.5, y: -121}
+        - {x: -229.5, y: -121}
+        - {x: -228.5, y: -122}
+        - {x: -226.5, y: -122}
+        - {x: -225.5, y: -121}
+        - {x: -202.5, y: -121}
+        - {x: -202.5, y: -124}
+        - {x: -196.5, y: -124}
+        - {x: -196.5, y: -121}
+        - {x: -153.5, y: -121}
+        - {x: -151.5, y: -124}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

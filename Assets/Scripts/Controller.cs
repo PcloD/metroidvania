@@ -20,8 +20,11 @@ public class Controller : MonoBehaviour {
     private HealthManager healthUI;
     private float currhealth;
 
-
+    //for laser projectiles
     private List<GameObject> beams;
+
+    //for charging projectiles
+    private float currCharging;
 
     // Use this for initialization
     void Start () {
@@ -36,6 +39,7 @@ public class Controller : MonoBehaviour {
             healthUI.AddHeart();
 
         beams = new List<GameObject>();
+        currCharging = 0;
     }
 
     void Update()
@@ -104,6 +108,12 @@ public class Controller : MonoBehaviour {
             {
                 ShootLaser();
             }
+
+            if (shotBehaviour.projectile.GetComponent<IProjectile>().Type == ProjType.Chargable && 1 / character.FireRate < nextFire)
+            {
+                nextFire = 0; // will fire x times per second, where x is ship.FireRate
+                ShootCharged(false);
+            }
         }
         else
         {
@@ -116,7 +126,25 @@ public class Controller : MonoBehaviour {
                 beams = new List<GameObject>();
             }
         }
-        
+
+        if (Input.GetButton("Fire2"))
+        {
+            if (shotBehaviour.projectile.GetComponent<IProjectile>().Type == ProjType.Chargable)
+            {
+                Charging();
+            }
+        }else if(shotBehaviour.projectile.GetComponent<IProjectile>().Type == ProjType.Chargable)
+        {
+            if (currCharging > 0.2f)
+                ShootCharged(true);
+            currCharging = 0;
+        }
+
+    }
+
+    void Charging()
+    {
+        currCharging += Time.deltaTime;
     }
 
     void Shoot()
@@ -132,7 +160,7 @@ public class Controller : MonoBehaviour {
         shotBehaviour.pattern.HandlePattern(shotProjectiles);
     }
 
-    void ShootCharged()
+    void ShootCharged(bool chargingValue)
     {
         GameObject[] shotProjectiles = new GameObject[shotBehaviour.pattern.numberOfBullets];
 
@@ -140,6 +168,7 @@ public class Controller : MonoBehaviour {
         {
             GameObject shotProjectile = (GameObject)Instantiate(shotBehaviour.projectile, BulletExitPoint.position, Quaternion.identity);
             shotProjectiles[i] = shotProjectile;
+            shotProjectile.GetComponent<ProjectileCharge>().Initialize(chargingValue);
         }
 
         shotBehaviour.pattern.HandlePattern(shotProjectiles);
@@ -147,13 +176,8 @@ public class Controller : MonoBehaviour {
 
     void ShootLaser()
     {
-        if (beams.Count > 0)
+        if (beams.Count > 0) 
         {
-            for (int i = 0; i < beams.Count; i++)
-            {
-                beams[i].GetComponent<LaserProj>().ShootingPos = BulletExitPoint.position;
-            }
-            
             return;
         }
             
@@ -163,7 +187,7 @@ public class Controller : MonoBehaviour {
         {
             GameObject shotProjectile = (GameObject)Instantiate(shotBehaviour.projectile, BulletExitPoint.position, Quaternion.identity);
             shotProjectiles[i] = shotProjectile;
-
+            shotProjectile.transform.parent = BulletExitPoint;
             beams.Add(shotProjectile);
         }
        

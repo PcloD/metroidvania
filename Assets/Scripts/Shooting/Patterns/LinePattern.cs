@@ -6,7 +6,6 @@ public class LinePattern : Pattern
 {
     public Vector3 directionToShoot;
 
-
     public override void HandlePattern(GameObject[] shotProjectiles)
     {
         shotProjectiles[0].GetComponent<IProjectile>().MovementVector = directionToShoot;

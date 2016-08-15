@@ -71,7 +71,9 @@
     <Compile Include="Assets\Scripts\Character.cs" />
     <Compile Include="Assets\Scripts\Controller.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyController.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemyMovement.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyStats.cs" />
+    <Compile Include="Assets\Scripts\Enemy\StraightMovement.cs" />
     <Compile Include="Assets\Scripts\Environment\ChangePath.cs" />
     <Compile Include="Assets\Scripts\Environment\Destructable.cs" />
     <Compile Include="Assets\Scripts\Movement\IMovement.cs" />
@@ -81,6 +83,8 @@
     <Compile Include="Assets\Scripts\Shooting\CollisionBehaviour\CollisionBehaviour.cs" />
     <Compile Include="Assets\Scripts\Shooting\CollisionBehaviour\Explode.cs" />
     <Compile Include="Assets\Scripts\Shooting\CollisionBehaviour\Weaken.cs" />
+    <Compile Include="Assets\Scripts\Shooting\Patterns\AtPlayer.cs" />
+    <Compile Include="Assets\Scripts\Shooting\Patterns\EnemyPatterns.cs" />
     <Compile Include="Assets\Scripts\Shooting\Patterns\LinePattern.cs" />
     <Compile Include="Assets\Scripts\Shooting\Patterns\Pattern.cs" />
     <Compile Include="Assets\Scripts\Shooting\Projectiles\IProjectile.cs" />
