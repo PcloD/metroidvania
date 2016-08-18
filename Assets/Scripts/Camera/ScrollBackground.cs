@@ -4,6 +4,7 @@ using System.Collections;
 public class ScrollBackground : MonoBehaviour {
 
     public float scrollingSpeed;
+    public bool scrollY = false;
     public bool autoScrolling = true;
 
     Material material;
@@ -22,7 +23,8 @@ public class ScrollBackground : MonoBehaviour {
         else
         {
             offset.x = transform.position.x / transform.localScale.x * scrollingSpeed;
-           // offset.y = transform.position.y / transform.localScale.y * scrollingSpeed;
+            if(scrollY)
+                offset.y = transform.position.y / transform.localScale.y * scrollingSpeed;
         }
         
         material.mainTextureOffset = offset;

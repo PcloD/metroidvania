@@ -208,9 +208,14 @@ public class Controller : MonoBehaviour {
         if (other.tag.Equals("Environment"))
             RespawnPos();
 
+        if (other.tag.Equals("EnemyBullet"))
+            TakeDamage(other.GetComponent<IProjectile>().Damage);
+
         invulnerability = character.InvulnTimer;
         gameObject.layer = INVULNERABILITY_LAYER;
         blinking.enabled = true;
+
+
 
         Debug.Log("Take Damage");
     }

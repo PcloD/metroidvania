@@ -12,6 +12,8 @@ public class EnemyStats : ScriptableObject
     private float fireRate = 5;
     [SerializeField]
     private float touchDamage = 1;
+    [SerializeField]
+    private float points = 1;
     public GameObject deathExplosion;
 
     public float MaxHealth
@@ -38,4 +40,16 @@ public class EnemyStats : ScriptableObject
         set { touchDamage = value; }
     }
 
+    public float Points
+    {
+        get
+        {
+            return points;
+        }
+
+        set
+        {
+            points = value;
+        }
+    }
 }

@@ -13,6 +13,8 @@ public class EnemyController : MonoBehaviour
     private Transform BulletExitPoint;
     private Transform player;
 
+    private PointManager pointManager;
+
     public float CurrHealth
     {
         get { return currhealth; }
@@ -26,6 +28,7 @@ public class EnemyController : MonoBehaviour
         BulletExitPoint = transform.FindChild("BulletExitPoint");
         currhealth = enemyStats.MaxHealth;
         player = GameObject.Find("Character").transform;
+        pointManager = GameObject.Find("PointManager").GetComponent<PointManager>();
     }
 
     void Update()
@@ -57,8 +60,10 @@ public class EnemyController : MonoBehaviour
         {
             GameObject shotProjectile = (GameObject)Instantiate(shotBehaviour.projectile, BulletExitPoint.position, Quaternion.identity);
             shotProjectiles[i] = shotProjectile;
+            shotProjectile.tag = "EnemyBullet";
+            shotProjectile.layer = 9;
         }
-
+        
         ((EnemyPatterns)(shotBehaviour.pattern)).HandlePattern(shotProjectiles, player.position);
     }
 
@@ -66,6 +71,8 @@ public class EnemyController : MonoBehaviour
     {
         Instantiate(enemyStats.deathExplosion, this.transform.position, Quaternion.identity);
         Destroy(gameObject);
+        pointManager.CurrentPoints += enemyStats.Points;
+        pointManager.killRecently();
     }
 
 
@@ -76,7 +83,7 @@ public class EnemyController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(!other.tag.Equals("Player"))
+        if(other.tag.Equals("PlayerBullet"))
             currhealth -= other.GetComponent<IProjectile>().Damage;
     }
 }
