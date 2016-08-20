@@ -206,7 +206,10 @@ public class Controller : MonoBehaviour {
             TakeDamage(other.GetComponent<EnemyController>().dealContactDamage());
 
         if (other.tag.Equals("Environment"))
+        {
+            TakeDamage(1);
             RespawnPos();
+        }
 
         if (other.tag.Equals("EnemyBullet"))
             TakeDamage(other.GetComponent<IProjectile>().Damage);

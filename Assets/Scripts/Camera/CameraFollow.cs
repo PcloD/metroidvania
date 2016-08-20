@@ -27,10 +27,9 @@ public class CameraFollow : MonoBehaviour {
         Vector3 objPosition = new Vector3(currPath[currNode].position.x, currPath[currNode].position.y, transform.position.z);
         transform.position += (objPosition - transform.position).normalized * scrollingSpeed;
 
-        if (Vector3.Distance(objPosition, transform.position) < 0.5f )
+        if (Vector3.Distance(objPosition, transform.position) < 0.1f )
         {
             currNode = Mathf.Min(currNode+1, currPath.Length);
-            Debug.Log(currPath[currNode].name);
         }
     }
 

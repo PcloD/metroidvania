@@ -77,6 +77,8 @@
     <Compile Include="Assets\Scripts\Enemy\WavyMovement.cs" />
     <Compile Include="Assets\Scripts\Environment\ChangePath.cs" />
     <Compile Include="Assets\Scripts\Environment\Destructable.cs" />
+    <Compile Include="Assets\Scripts\Environment\DoorOpen.cs" />
+    <Compile Include="Assets\Scripts\Environment\TriggerScript.cs" />
     <Compile Include="Assets\Scripts\Movement\IMovement.cs" />
     <Compile Include="Assets\Scripts\Movement\JoystickMovement.cs" />
     <Compile Include="Assets\Scripts\Movement\KeyboardMovement.cs" />
@@ -101,6 +103,7 @@
     <Compile Include="Assets\Scripts\Utils\SelfDestruct.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Materials\ReColorBlink.shader" />
     <None Include="Assets\Materials\SpriteBlink.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />

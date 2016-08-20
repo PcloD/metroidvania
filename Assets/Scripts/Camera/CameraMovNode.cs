@@ -9,21 +9,20 @@ public class CameraMovNode : MonoBehaviour {
 
     void Update()
     {
-        Transform[] childs = GetComponentsInChildren<Transform>();
         List<Transform> pathList = new List<Transform>();
         List<Transform> altPathList = new List<Transform>();
 
-        for(int i = 0; i < childs.Length; i++)
+        foreach (Transform child in transform)
         {
 
-            if (!childs[i].name.Contains("b"))
+            if (!child.name.Contains("b"))
             {
-                pathList.Add(childs[i]);
+                pathList.Add(child);
             }
 
-            if (!childs[i].name.Contains("a"))
+            if (!child.name.Contains("a"))
             {
-                altPathList.Add(childs[i]);
+                altPathList.Add(child);
             }
         }
         path = pathList.ToArray();

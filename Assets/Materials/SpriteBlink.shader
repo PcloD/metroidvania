@@ -3,7 +3,7 @@
 	Properties
 	{
 		[PerRendererData] _MainTex("Sprite Texture", 2D) = "white" {}
-		_Color("Tint", Color) = (1,1,1,1)
+		_Color("Blinking Tint", Color) = (1,1,1,1)
 		[MaterialToggle] PixelSnap("Pixel snap", Float) = 0
 	}
 
@@ -47,6 +47,9 @@
 	};
 
 	fixed4 _Color;
+	fixed4 _WColor;
+	fixed4 _GColor;
+	fixed4 _BColor;
 
 	v2f vert(appdata_t IN)
 	{
@@ -79,6 +82,7 @@
 	fixed4 frag(v2f IN) : SV_Target
 	{
 		fixed4 c = SampleSpriteTexture(IN.texcoord);
+
 		c.rgb *= c.a;
 		c.rgb += IN.color * IN.color.a * c.a;
 	return c;
