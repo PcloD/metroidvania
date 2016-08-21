@@ -44,10 +44,11 @@ public class Controller : MonoBehaviour {
 
     void Update()
     {
+        /*
         if(currhealth <= 0)
         {
             Die();
-        }
+        }*/
 
         if(invulnerability > 0)
         {

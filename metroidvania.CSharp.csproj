@@ -70,10 +70,13 @@
     <Compile Include="Assets\Scripts\Camera\ScrollBackground.cs" />
     <Compile Include="Assets\Scripts\Character.cs" />
     <Compile Include="Assets\Scripts\Controller.cs" />
+    <Compile Include="Assets\Scripts\Enemy\BasicBehaviour.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemyBehaviour.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyController.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyMovement.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyStats.cs" />
     <Compile Include="Assets\Scripts\Enemy\StraightMovement.cs" />
+    <Compile Include="Assets\Scripts\Enemy\TurretBehaviour.cs" />
     <Compile Include="Assets\Scripts\Enemy\WavyMovement.cs" />
     <Compile Include="Assets\Scripts\Environment\ChangePath.cs" />
     <Compile Include="Assets\Scripts\Environment\Destructable.cs" />
@@ -103,6 +106,7 @@
     <Compile Include="Assets\Scripts\Utils\SelfDestruct.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Materials\ReColorBlink 1.shader" />
     <None Include="Assets\Materials\ReColorBlink.shader" />
     <None Include="Assets\Materials\SpriteBlink.shader" />
   </ItemGroup>

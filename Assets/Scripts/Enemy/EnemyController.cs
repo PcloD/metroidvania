@@ -6,10 +6,12 @@ public class EnemyController : MonoBehaviour
     public EnemyStats enemyStats;
     public EnemyMovement movementPattern;
     public ShotBehaviour shotBehaviour;
+    public EnemyBehaviour enemyBehaviour;
 
     private float currhealth;
     private float nextFire;
 
+    private Transform Head;
     private Transform BulletExitPoint;
     private Transform player;
 
@@ -25,10 +27,18 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         nextFire = enemyStats.FireRate;
-        BulletExitPoint = transform.FindChild("BulletExitPoint");
         currhealth = enemyStats.MaxHealth;
         player = GameObject.Find("Character").transform;
+        if (enemyBehaviour != null)
+        {
+            enemyBehaviour.InitBehaviour(this);
+        }
         pointManager = GameObject.Find("PointManager").GetComponent<PointManager>();
+    }
+
+    public void setBulletExitPoint(Transform exitPoint)
+    {
+        BulletExitPoint = exitPoint;
     }
 
     void Update()
@@ -38,7 +48,12 @@ public class EnemyController : MonoBehaviour
             Die();
         }
 
-        if(movementPattern != null)
+        if (enemyBehaviour != null)
+        {
+            enemyBehaviour.Behaviour(this, player);
+        }
+        
+        if (movementPattern != null)
         {
             movementPattern.Move(transform, enemyStats.MovementSpeed);
         }

@@ -35,14 +35,12 @@
 		struct appdata_t
 	{
 		float4 vertex   : POSITION;
-		float4 color    : COLOR;
 		float2 texcoord : TEXCOORD0;
 	};
 
 	struct v2f
 	{
 		float4 vertex   : SV_POSITION;
-		fixed4 color : COLOR;
 		float2 texcoord  : TEXCOORD0;
 	};
 
@@ -56,7 +54,6 @@
 		v2f OUT;
 		OUT.vertex = mul(UNITY_MATRIX_MVP, IN.vertex);
 		OUT.texcoord = IN.texcoord;
-		OUT.color = IN.color * _Color;
 #ifdef PIXELSNAP_ON
 		OUT.vertex = UnityPixelSnap(OUT.vertex);
 #endif
@@ -84,7 +81,9 @@
 		fixed4 c = SampleSpriteTexture(IN.texcoord);
 
 		c.rgb *= c.a;
-		c.rgb += IN.color * IN.color.a * c.a;
+		if(_Color.a > 0)
+			c.rgb = _Color * _Color.a  * c.a;
+
 	return c;
 	}
 		ENDCG
