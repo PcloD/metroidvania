@@ -14,6 +14,7 @@ public class EnemyController : MonoBehaviour
     private Transform Head;
     private Transform BulletExitPoint;
     private Transform player;
+    private float timer;
 
     private PointManager pointManager;
 
@@ -26,6 +27,7 @@ public class EnemyController : MonoBehaviour
 
     void Start()
     {
+        timer = 0;
         nextFire = enemyStats.FireRate;
         currhealth = enemyStats.MaxHealth;
         player = GameObject.Find("Character").transform;
@@ -43,6 +45,7 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
+        timer += Time.deltaTime;
         if (currhealth <= 0)
         {
             Die();
@@ -55,7 +58,7 @@ public class EnemyController : MonoBehaviour
         
         if (movementPattern != null)
         {
-            movementPattern.Move(transform, enemyStats.MovementSpeed);
+            movementPattern.Move(transform, enemyStats.MovementSpeed, timer);
         }
 
         nextFire += Time.deltaTime;

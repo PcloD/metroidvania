@@ -1,0 +1,4 @@
+enemy: 
+prefabName (include sprite, stats, shotBehaviour and Enemy Behaviour)
+Movement Pattern ScriptableObjectName
+Spawning time/pos

@@ -25,7 +25,7 @@ public class CameraMovNodeEditor : Editor
 
         for (int i = 1; i < t.altPath.Length; i++)
         {
-            if (t.path[i] != null)
+            if (t.altPath[i] != null)
                 Handles.DrawLine(t.altPath[i - 1].transform.position, t.altPath[i].transform.position);
         }
 

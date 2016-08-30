@@ -56,6 +56,8 @@ public class Projectile : MonoBehaviour, IProjectile
         collBehaviour = GetComponent<CollisionBehaviour>();
         collider = GetComponent<Collider2D>();
         camBounds = Camera.main.GetComponent<CameraUtils>();
+        float angleTorotate = Vector3.Angle(-transform.right, movementVector);
+        transform.rotation *= Quaternion.Euler(0, 0, angleTorotate);
     }
 
     void Update()

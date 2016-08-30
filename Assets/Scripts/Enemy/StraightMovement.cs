@@ -7,7 +7,7 @@ public class StraightMovement : EnemyMovement
 {
     public Vector3 direction;
 
-    public override void Move(Transform enemy, float speed)
+    public override void Move(Transform enemy, float speed, float timer)
     {
         enemy.position += direction * speed * Time.deltaTime;
     }

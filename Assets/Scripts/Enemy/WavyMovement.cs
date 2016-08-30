@@ -9,9 +9,9 @@ public class WavyMovement : EnemyMovement
     public float amplitude;
     public float frequency;
 
-    public override void Move(Transform enemy, float speed)
+    public override void Move(Transform enemy, float speed, float timer)
     {
-        enemy.position += new Vector3(direction.x * speed * Time.deltaTime, Mathf.Sin(Time.time * frequency) * amplitude, 0);
+        enemy.position += new Vector3(direction.x * speed * Time.deltaTime, Mathf.Sin(timer * frequency) * amplitude, 0);
 
     }
 
