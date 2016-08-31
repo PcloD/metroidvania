@@ -9,6 +9,7 @@ public class InViewStart : MonoBehaviour {
     private CameraUtils camUtil;
     private Collider2D collider;
 
+
     // Use this for initialization
     void Start () {
         enemyController = GetComponent<EnemyController>();
@@ -29,13 +30,12 @@ public class InViewStart : MonoBehaviour {
         }
         else
         {
-            Vector2 boundValues = camUtil.checkCamBounds(new Vector2(transform.position.x - collider.offset.x, transform.position.y - collider.offset.y),
+            Vector2 boundValues = camUtil.checkCamBounds(new Vector2(transform.position.x + collider.offset.x, transform.position.y + collider.offset.y),
                 new Vector2(-collider.bounds.extents.x, -collider.bounds.extents.y));
 
             inCamera = boundValues.x == 0 && boundValues.y == 0;
 
         }
-
     }
 
 

@@ -84,6 +84,7 @@
     <Compile Include="Assets\Scripts\Environment\Destructable.cs" />
     <Compile Include="Assets\Scripts\Environment\DoorOpen.cs" />
     <Compile Include="Assets\Scripts\Environment\TriggerScript.cs" />
+    <Compile Include="Assets\Scripts\InViewDelayMortality.cs" />
     <Compile Include="Assets\Scripts\InViewStart.cs" />
     <Compile Include="Assets\Scripts\Movement\IMovement.cs" />
     <Compile Include="Assets\Scripts\Movement\JoystickMovement.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="Assets\Scripts\Movement\MouseMovement.cs" />
     <Compile Include="Assets\Scripts\PointBall.cs" />
     <Compile Include="Assets\Scripts\PointManager.cs" />
+    <Compile Include="Assets\Scripts\RandomRotation.cs" />
     <Compile Include="Assets\Scripts\Shooting\CollisionBehaviour\CollisionBehaviour.cs" />
     <Compile Include="Assets\Scripts\Shooting\CollisionBehaviour\Explode.cs" />
     <Compile Include="Assets\Scripts\Shooting\CollisionBehaviour\Weaken.cs" />

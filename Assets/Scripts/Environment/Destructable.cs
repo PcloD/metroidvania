@@ -5,6 +5,7 @@ public class Destructable : MonoBehaviour {
 
     public int collisions = 1;
     private int collisionsHad = 0;
+    public GameObject deathExplosion;
 
     void Start()
     {
@@ -20,7 +21,8 @@ public class Destructable : MonoBehaviour {
             {
                 if (GetComponent<ChangePath>() != null)
                     GetComponent<ChangePath>().switchPath();
-                Destroy(gameObject);
+                GameObject explosion = (GameObject)Instantiate(deathExplosion, transform.position, Quaternion.identity);
+                Destroy(transform.parent.gameObject);
             }
         }
     }
